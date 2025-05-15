@@ -18,7 +18,7 @@
    "bluetooth": [
     {
       "manufacturer_id": 1373,
-      "manufacturer_data_start": [0, 2, 3]
+      "manufacturer_data_start": [0, 2]
     }
   ]
 }
