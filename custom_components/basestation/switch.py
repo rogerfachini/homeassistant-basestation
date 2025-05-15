@@ -9,6 +9,7 @@ from homeassistant.components.switch import SwitchEntity
 from homeassistant.components import bluetooth
 import asyncio
 from homeassistant.config_entries import ConfigEntry
+import logging
 
 from .const import (
     PWR_CHARACTERISTIC,
@@ -35,9 +36,10 @@ async def async_setup_entry(
     mac = config_entry.unique_id
     name = config_entry.title
 
-    # _LOGGER.debug("got switch: %s %s", mac, name)
-
     async_add_entities([BasestationSwitch(hass, mac, name)], update_before_add=True)
+
+    _LOGGER.debug("got switch: %s %s", mac, name)
+
 
 class BasestationSwitch(SwitchEntity):
     """The basestation switch implementtion."""
