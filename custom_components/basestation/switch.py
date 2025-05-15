@@ -51,6 +51,7 @@ class BasestationSwitch(SwitchEntity):
         self._name = name
         self._is_on = False
         self._is_available = False
+        self._attr_unique_id = mac
 
     @property
     def icon(self):
