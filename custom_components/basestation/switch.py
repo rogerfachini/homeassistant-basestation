@@ -24,6 +24,18 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     name = config.get("name")
     add_entities([BasestationSwitch(hass, mac, name)], update_before_add=True)
 
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: BasestationSwitchConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+):
+    """Set up the Switches."""
+    mac = config.get("mac", None)
+    name = config.get("name", None)
+
+    _LOGGER.debug("got switch: %s %s", mac, name)
+
+    async_add_entities([BasestationSwitch(hass, mac, name)], update_before_add=True)
 
 class BasestationSwitch(SwitchEntity):
     """The basestation switch implementtion."""
