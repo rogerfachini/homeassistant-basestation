@@ -30,8 +30,8 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ):
     """Set up the Switches."""
-    mac = config.get("mac", None)
-    name = config.get("name", None)
+    mac = config_entry.get("mac", None)
+    name = config_entry.get("name", None)
 
     _LOGGER.debug("got switch: %s %s", mac, name)
 
