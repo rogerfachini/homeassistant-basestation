@@ -1,4 +1,5 @@
 """The basestation switch."""
+from __future__ import annotations
 
 from bleak import (
     BleakClient,
