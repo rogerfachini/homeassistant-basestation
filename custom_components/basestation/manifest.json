@@ -2,7 +2,7 @@
   "domain": "basestation",
   "name": "Valve Index Basestation",
   "version": "0.0.1",
-  "config_flow": false,
+  "config_flow": true,
   "documentation": "https://github.com/jariz/homeassistant-basestation",
   "issue_tracker": "https://github.com/jariz/homeassistant-basestation/issues",
   "requirements": [],
