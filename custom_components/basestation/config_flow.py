@@ -27,18 +27,10 @@ class BasestationConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION = 1
     MINOR_VERSION = 2
     
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
-        """Handle a flow initialized by the user."""
-        errors: dict[str, str] = {}
-        if user_input:
-            return self.async_create_entry(
-                title="MyIntegration",
-                data=user_input,
-            )
+    async def async_step_user(self, user_input: dict[str, Any] | None = None):
+        if user_input is not None:
+            pass  # TODO: process info
+
         return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema({vol.Required(CONF_HOST): str}),
-            errors=errors,
+            step_id="user", data_schema=vol.Schema({vol.Required("mac"): str})
         )
