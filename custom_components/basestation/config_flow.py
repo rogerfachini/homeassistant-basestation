@@ -26,10 +26,27 @@ class BasestationConfigFlow(ConfigFlow, domain=DOMAIN):
     
     VERSION = 1
     MINOR_VERSION = 2
+
+    async def async_step_bluetooth(
+        self, discovery_info: BluetoothServiceInfo
+    ) -> ConfigFlowResult:
+        """Handle the bluetooth discovery step."""
+        _LOGGER.debug("Discovered BT device: %s", discovery_info)
+        await self.async_set_unique_id(discovery_info.address)
+        self._abort_if_unique_id_configured()
+
+        return self.async_create_entry()
+
+
     
     async def async_step_user(self, user_input: dict[str, Any] | None = None):
         if user_input is not None:
-            pass  # TODO: process info
+            address = user_input["mac"]
+            await self.async_set_unique_id(address, raise_on_progress=False)
+            self._abort_if_unique_id_configured()
+
+            return self.async_create_entry()
+
 
         return self.async_show_form(
             step_id="user", data_schema=vol.Schema({vol.Required("mac"): str})
