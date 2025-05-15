@@ -14,6 +14,8 @@ from homeassistant.components.bluetooth import (
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS
 
+import voluptuous as vol
+
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
