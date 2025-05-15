@@ -14,17 +14,18 @@ from homeassistant.components.bluetooth import (
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS
 
-import voluptuous as vol
 
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
+import voluptuous as vol
+
 class BasestationConfigFlow(ConfigFlow, domain=DOMAIN):
     """Initial config flow for adding a Basestation"""
     
     VERSION = 1
-    MINOR_VERSION = 1
+    MINOR_VERSION = 2
     
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
