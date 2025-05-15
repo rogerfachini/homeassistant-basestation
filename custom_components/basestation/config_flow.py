@@ -1,9 +1,8 @@
+from __future__ import annotations
+
 from .const import (
     DOMAIN
 )
-
-
-from __future__ import annotations
 
 import dataclasses
 import logging
@@ -25,7 +24,10 @@ _LOGGER = logging.getLogger(__name__)
 
 class BasestationConfigFlow(ConfigFlow, domain=DOMAIN):
     """Initial config flow for adding a Basestation"""
-
+    
+    VERSION = 1
+    MINOR_VERSION = 1
+    
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
