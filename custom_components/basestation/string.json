@@ -3,10 +3,12 @@
     "step": {
       "user": {
         "data": {
-          "mac": "MAC"
+          "name": "Name"
+          "mac": "MAC",
         },
         "data_description": {
-          "mac": "The MAC Address of the Base Station"
+          "mac": "The MAC Address of the Base Station",
+          "name": "Device name"
         }
       }
     }
