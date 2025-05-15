@@ -16,6 +16,8 @@ from .const import (
     PWR_STANDBY,
 )
 
+_LOGGER = logging.getLogger(__name__)
+
 type BasestationSwitchConfigEntry = ConfigEntry[BasestationSwitch]
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
