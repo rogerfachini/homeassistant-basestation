@@ -13,6 +13,7 @@ PLATFORMS: list[Platform] = [Platform.SWITCH]
 async def async_setup_entry(
     hass: HomeAssistant, entry: BasestationSwitchConfigEntry
 ) -> bool:
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
 
