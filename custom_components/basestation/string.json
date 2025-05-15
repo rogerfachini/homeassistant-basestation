@@ -3,10 +3,10 @@
     "step": {
       "user": {
         "data": {
-          "host": "Host"
+          "mac": "MAC"
         },
         "data_description": {
-          "host": "The hostname or IP address of the MyIntegration device."
+          "mac": "The MAC Address of the Base Station"
         }
       }
     }
