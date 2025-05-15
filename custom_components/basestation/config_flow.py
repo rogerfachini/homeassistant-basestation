@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-from .const import (
-    DOMAIN
-)
-
 import dataclasses
 import logging
 from typing import Any
@@ -18,7 +14,7 @@ from homeassistant.components.bluetooth import (
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS
 
-from .const import DOMAIN, MFCT_ID
+from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
