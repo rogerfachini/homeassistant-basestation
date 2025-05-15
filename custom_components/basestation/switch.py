@@ -35,7 +35,7 @@ async def async_setup_entry(
     mac = config_entry.unique_id
     name = config_entry.title
 
-    _LOGGER.debug("got switch: %s %s", mac, name)
+    # _LOGGER.debug("got switch: %s %s", mac, name)
 
     async_add_entities([BasestationSwitch(hass, mac, name)], update_before_add=True)
 
