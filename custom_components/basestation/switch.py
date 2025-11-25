@@ -1,9 +1,10 @@
 """The basestation switch."""
 from __future__ import annotations
 
-from bleak import (
-    BleakClient,
-    BleakError
+from bleak import BleakError
+from bleak_retry_connector import (
+    establish_connection,
+    BleakClientWithServiceCache,
 )
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.components import bluetooth
@@ -93,18 +94,45 @@ class BasestationSwitch(SwitchEntity):
         asyncio.run(self.async_update())
 
     async def async_turn_on(self):
-        async with BleakClient(self.get_ble_device()) as client:
+        device = self.get_ble_device()
+        client = await establish_connection(
+            BleakClientWithServiceCache,
+            device,
+            self._name or "Valve Basestation",
+            max_attempts=3
+        )
+        try:
             await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
+        finally:
+            await client.disconnect()
 
     async def async_turn_off(self):
-        async with BleakClient(self.get_ble_device()) as client:
+        device = self.get_ble_device()
+        client = await establish_connection(
+            BleakClientWithServiceCache,
+            device,
+            self._name or "Valve Basestation",
+            max_attempts=3
+        )
+        try:
             await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
+        finally:
+            await client.disconnect()
 
     async def async_update(self):
         try:
-            async with BleakClient(self.get_ble_device()) as client:
+            device = self.get_ble_device()
+            client = await establish_connection(
+                BleakClientWithServiceCache,
+                device,
+                self._name or "Valve Basestation",
+                max_attempts=3
+            )
+            try:
                 self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC) != PWR_STANDBY
                 self._is_available = True
+            finally:
+                await client.disconnect()
         except BleakError:
             self._is_on = False
             self._is_available = False
